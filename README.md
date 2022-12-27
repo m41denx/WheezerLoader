@@ -4,8 +4,8 @@ Basically a DeezLoader fork, but with proxy support.
 
 DeeLogin behaves differently now, you need to create API_GW first
 ```python
-from deezloader.deezloader.deegw_api import API_GW
-from deezloader.deezloader import DeeLogin
+from wheezeloader.deezloader.deegw_api import API_GW
+from wheezeloader.deezloader import DeeLogin
 
 gw = API_GW(
             arl = "ARL",
