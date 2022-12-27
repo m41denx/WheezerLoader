@@ -1,0 +1,8 @@
+fastapi
+librespot
+mutagen
+pycryptodome
+requests
+spotipy
+tqdm
+uvicorn
