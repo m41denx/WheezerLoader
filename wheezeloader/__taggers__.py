@@ -3,7 +3,7 @@
 from base64 import b64encode
 from mutagen.flac import FLAC, Picture
 from mutagen.oggvorbis import OggVorbis
-from deezloader.models.track import Track
+from wheezeloader.models.track import Track
 
 from mutagen.id3 import (
 	ID3NoHeaderError,

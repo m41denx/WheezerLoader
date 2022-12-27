@@ -5,8 +5,8 @@ from datetime import datetime
 from urllib.parse import urlparse
 from requests import get as req_get
 from zipfile import ZipFile, ZIP_DEFLATED
-from deezloader.models.track import Track
-from deezloader.exceptions import InvalidLink
+from wheezeloader.models.track import Track
+from wheezeloader.exceptions import InvalidLink
 from .others_settings import supported_link, header
 
 from os.path import (
