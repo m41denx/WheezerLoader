@@ -31,7 +31,6 @@ class Download_JOB:
 	def __init__(self, gw_api: API_GW):
 		self.gw_api = gw_api
 
-	@classmethod
 	def __get_url(
 		cls,
 		c_track: Track,
@@ -63,7 +62,6 @@ class Download_JOB:
 
 		return c_media_json
 
-	@classmethod
 	def check_sources(
 		cls,
 		infos_dw: list,
@@ -167,9 +165,9 @@ class EASY_DW:
 		except TrackNotFound:
 			try:
 				self.__fallback_ids = API.not_found(song, self.__song_metadata['music'])
-				self.__infos_dw = self.gwapi.get_song_data(self.__fallback_ids)
+				self.__infos_dw = self.gw_api.get_song_data(self.__fallback_ids)
 
-				media = Download_JOB.check_sources(
+				media = Download_JOB(gw_api=self.gw_api).check_sources(
 					[self.__infos_dw], self.__quality_download
 				)
 
@@ -221,7 +219,7 @@ class EASY_DW:
 
 				print(f"🛈 Trying to download {song} - {artist} in {c_quality}")
 
-				media = Download_JOB.check_sources(
+				media = Download_JOB(gw_api=self.gw_api).check_sources(
 					[self.__infos_dw], c_quality
 				)
 
@@ -322,7 +320,7 @@ class DW_TRACK:
 	def dw(self) -> Track:
 		infos_dw = self.gw_api.get_song_data(self.__ids)
 
-		media = Download_JOB.check_sources(
+		media = Download_JOB(gw_api=self.gw_api).check_sources(
 			[infos_dw], self.__quality_download
 		)
 
@@ -373,7 +371,7 @@ class DW_ALBUM:
 		tracks = album.tracks
 		album.tags = self.__song_metadata
 
-		medias = Download_JOB.check_sources(
+		medias = Download_JOB(gw_api=self.gw_api).check_sources(
 			infos_dw, self.__quality_download
 		)
 
@@ -412,7 +410,7 @@ class DW_ALBUM:
 					ids = API.not_found(song, c_song_metadata['music'])
 					c_infos_dw = self.gw_api.get_song_data(ids)
 
-					c_media = Download_JOB.check_sources(
+					c_media = Download_JOB(gw_api=self.gw_api).check_sources(
 						[c_infos_dw], self.__quality_download
 					)
 
@@ -469,7 +467,7 @@ class DW_PLAYLIST:
 		playlist = Playlist()
 		tracks = playlist.tracks
 
-		medias = Download_JOB.check_sources(
+		medias = Download_JOB(gw_api=self.gw_api).check_sources(
 			infos_dw, self.__quality_download
 		)
 
